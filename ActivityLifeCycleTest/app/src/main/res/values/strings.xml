@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ActivityLifeCycleTest</string>
+    <string name="dummy_txt">dummy text</string>
+    <string name="txt_next">Next</string>
+    <string name="txt_next_activity">NEXT ACTIVITY</string>
+    <string name="txt_close">CLOSE</string>
+</resources>
