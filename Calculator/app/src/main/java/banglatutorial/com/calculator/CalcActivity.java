@@ -38,9 +38,10 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
             numberText.setError("No Number provided");
             return;
         } else {
-            numberOne = Double.parseDouble(temp);
-            if(view.getId() != R.id.btnEquals)
+            if (view.getId() != R.id.btnEquals) {
+                numberOne = Double.parseDouble(temp);
                 numberText.setText("");
+            }
         }
         switch (view.getId()) {
             case R.id.btnPlus:
@@ -59,38 +60,34 @@ public class CalcActivity extends AppCompatActivity implements View.OnClickListe
                 action = Action.PERCENTAGE;
                 break;
             case R.id.btnEquals:
-                process();
+                process(temp);
                 break;
         }
     }
 
-    private void process() {
-        String temp = numberText.getText().toString();
-        if (temp.isEmpty()) {
-            numberText.setError("Please Insert second number");
-        } else {
-            double numberTwo = Double.parseDouble(temp);
-            switch (action) {
-                case ADD:
-                    numberText.setText("" + (numberOne + numberTwo));
-                    break;
-                case MINUS:
-                    numberText.setText("" + (numberOne - numberTwo));
-                    break;
-                case MULTIPLICATION:
-                    numberText.setText("" + (numberOne * numberTwo));
-                    break;
-                case DIVISION:
-                    numberText.setText("" + (numberOne / numberTwo));
-                    break;
-                case PERCENTAGE:
-                    double result = (numberOne * numberTwo) / 100;
-                    numberText.setText("" + result);
-                    break;
+    private void process(String temp) {
 
-            }
-            numberOne = 0;
+        double numberTwo = Double.parseDouble(temp);
+        switch (action) {
+            case ADD:
+                numberText.setText(numberOne + " + " + numberTwo + " = " + (numberOne + numberTwo));
+                break;
+            case MINUS:
+                numberText.setText(numberOne + " - " + numberTwo + " = " + (numberOne - numberTwo));
+                break;
+            case MULTIPLICATION:
+                numberText.setText(numberOne + " x " + numberTwo + " = " + (numberOne * numberTwo));
+                break;
+            case DIVISION:
+                numberText.setText(numberOne + " / " + numberTwo + " = " + (numberOne / numberTwo));
+                break;
+            case PERCENTAGE:
+                double result = (numberOne * numberTwo) / 100;
+                numberText.setText(numberOne + " of " + numberTwo + "% = " + result);
+                break;
+
         }
+        numberOne = 0;
     }
 
     private enum Action {
